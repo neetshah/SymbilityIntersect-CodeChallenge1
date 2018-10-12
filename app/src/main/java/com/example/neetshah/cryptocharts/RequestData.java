@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 
 public class RequestData extends AsyncTask {
 
@@ -39,15 +40,39 @@ public class RequestData extends AsyncTask {
                 buffer.append(line + "\n");
                 Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
                 JSONObject mainObject = new JSONObject(line);
-//                JSONObject uniObject = mainObject.getJSONObject("Data");
+                JSONObject uniObject = mainObject.getJSONObject("Data");
+                JSONObject value1 = (JSONObject)uniObject.get("DIVX");
+                Log.d("TAGmmm", value1.toString());
+                String a = value1.getString("Name");
+//                JSONObject value2 = (JSONObject)uniObject.get("Name");
+                Log.d("NAME: ", a.toString());
+
+//                Iterator<String> iter = uniObject.keys();
+//                while (iter.hasNext()) {
+//                    String key = iter.next();
+//                    try {
+//                        Object value = uniObject.get(key);
+//                        JSONObject b = (JSONObject) value;
+//                        Iterator<String> iter1 = b.keys();
+//                        String key1 =
+//                        Object c = b.get("Url");
+//                        JSONObject d = (JSONObject) c;
+//                        Log.d("TAG", d.toString());
+//                    } catch (JSONException e) {
+//                        // Something went wrong!
+//                    }
+//                }
+
+
 //                JSONObject object2 = uniObject.getJSONObject("365");
-                JSONArray object3 = mainObject.getJSONArray("Data");
-                Log.d("LENGHT: ", String.valueOf(object3.length()));
+//                JSONArray object3 = mainObject.getJSONArray("Data");
+//                Log.d("LENGHT: ", String.valueOf(object3.length()));
 //                for (int i =0; i<object3.length(); i++) {
 ////                    Log.d("CHECK"+i, object3.getJSONObject(i).toString());
 //                    object3.getJSONObject(i);
 //                }
-                JSONObject a = object3.getJSONObject(4);
+//                JSONObject a = object3.getJSONObject(4);
+//                Log.d("TAG")
 //                Log.d("CHECK", array.toString());
             }
 
