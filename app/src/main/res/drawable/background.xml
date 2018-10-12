@@ -3,13 +3,22 @@
 
     <item android:drawable="@drawable/background1" />
 
-    <item>
+
+    <item
+        android:top="200dp">
+        <bitmap android:src="@drawable/coins"
+            android:gravity="top"/>
+    </item>
+    <item
+        android:top="350dp">
         <bitmap android:src="@drawable/title"
-          android:gravity="center" />
+          android:gravity="top" />
     </item>
 
-    <!--<item>-->
-        <!--<bitmap android:src="@drawable/title"-->
-            <!--android:gravity="bottom" />-->
-    <!--</item>-->
+    <item
+        android:bottom="100dp">
+        <bitmap android:src="@drawable/author"
+            android:gravity="bottom" />
+    </item>
+
 </layer-list>
