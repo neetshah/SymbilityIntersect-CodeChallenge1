@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class RequestData extends AsyncTask {
@@ -28,7 +29,6 @@ public class RequestData extends AsyncTask {
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
-
             InputStream stream = connection.getInputStream();
 
             reader = new BufferedReader(new InputStreamReader(stream));
@@ -40,12 +40,23 @@ public class RequestData extends AsyncTask {
                 buffer.append(line + "\n");
                 Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
                 JSONObject mainObject = new JSONObject(line);
-                JSONObject uniObject = mainObject.getJSONObject("Data");
-                JSONObject value1 = (JSONObject)uniObject.get("DIVX");
-                Log.d("TAGmmm", value1.toString());
-                String a = value1.getString("Name");
-//                JSONObject value2 = (JSONObject)uniObject.get("Name");
-                Log.d("NAME: ", a.toString());
+                JSONObject data = mainObject.getJSONObject("Data");
+                Iterator<String> iterator = data.keys();
+                ArrayList<String> names = new ArrayList<>();
+                while(iterator.hasNext()) {
+                    String key = iterator.next();
+                    JSONObject currency = (JSONObject) data.get(key);
+                    String name = currency.getString("CoinName");
+                    names.add(name);
+                }
+                for(String name: names) {
+                    Log.d("Names: ", name);
+                }
+//                JSONObject value1 = (JSONObject)data.get("DIVX");
+//                Log.d("TAGmmm", value1.toString());
+//                String a = value1.getString("Name");
+////                JSONObject value2 = (JSONObject)uniObject.get("Name");
+//                Log.d("NAME: ", a.toString());
 
 //                Iterator<String> iter = uniObject.keys();
 //                while (iter.hasNext()) {
